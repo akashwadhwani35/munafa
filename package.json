@@ -1,0 +1,18 @@
+{
+  "name": "munafa",
+  "version": "1.0.0",
+  "description": "Munafa: pay your wholesaler by photographing the bill. Paytm Build for India AI Hackathon, Track 1.",
+  "scripts": {
+    "build": "node screens.mjs && node deck.mjs && node demo.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1",
+    "puppeteer": "^25.15.0",
+    "sharp": "^0.35.5"
+  },
+  "private": true
+}

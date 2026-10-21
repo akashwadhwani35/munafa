@@ -1,0 +1,55 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="liquid-glass.css"><style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600&display=block');
+:root{--bg:#f6f6f7;--card:#fff;--ink:#111214;--sub:#6c6d73;--line:#ececee;--navy:#002e6e;--sky:#00baf2;--ok:#138a4b;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:390px;height:844px;background:transparent}
+body{font-family:Inter,-apple-system,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1,"cv11" 1}
+.phone{position:relative;width:390px;height:844px;border-radius:46px;overflow:hidden;background:var(--bg)}
+.phone.dark{background:#0b0b0c;color:#fff}
+.status{position:absolute;top:0;left:0;right:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 44px;font-weight:600;font-size:17px;z-index:20}
+.island{position:absolute;left:50%;top:11px;width:124px;height:36px;border-radius:20px;background:#000;transform:translateX(-50%)}
+.sicons{display:flex;gap:6px;align-items:center}
+.ic{display:inline-block;width:22px;height:22px;background:currentColor;-webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat;flex:none}
+.scroll{position:absolute;inset:54px 0 0 0;padding:8px 20px 140px;overflow:hidden}
+h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:18px 4px 4px}
+.lead{font-size:15px;color:var(--sub);margin:0 4px 18px;line-height:1.4}
+.card{background:var(--card);border-radius:26px;padding:20px;margin-bottom:14px}
+.big{font-size:40px;font-weight:800;letter-spacing:-.03em}
+.sub{color:var(--sub);font-size:14px;line-height:1.4}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.hr{height:1px;background:var(--line);margin:14px 0}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;height:54px;border-radius:999px;background:var(--navy);color:#fff;font-weight:700;font-size:17px;width:100%}
+.btn.light{background:#fff;color:var(--navy)}
+.tabbar{position:absolute;left:16px;right:16px;bottom:28px;display:flex;gap:10px;z-index:10}
+.tabbar .lg{height:64px}
+.tabs{flex:1;display:flex;align-items:center;justify-content:space-around;padding:0 6px}
+.tab{height:52px;flex:1;display:flex;align-items:center;justify-content:center;border-radius:999px;color:#1b1b1d}
+.tab.on{background:rgba(0,0,0,.07);color:var(--navy)}
+.tab .ic{width:26px;height:26px}
+.fab{width:64px;display:flex;align-items:center;justify-content:center;color:var(--navy)}
+.fab .ic{width:28px;height:28px}
+.bottom{position:absolute;left:16px;right:16px;bottom:28px;z-index:10;padding:8px;border-radius:36px}
+.lg{--lg-tint:rgba(255,255,255,.62)}
+.dark .lg{--lg-tint:rgba(40,40,44,.45);--lg-edge:rgba(255,255,255,.3);color:#fff}
+.fade{position:absolute;left:0;right:0;bottom:0;height:150px;background:linear-gradient(rgba(246,246,247,0),var(--bg) 70%);z-index:5}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ok)}
+.chip .ic{width:16px;height:16px}
+.deva{font-family:"Noto Sans Devanagari",Inter,sans-serif}
+</style></head>
+<body><div class="phone "><div class="status" style="color:#000"><span>9:41</span><div class="island"></div><span class="sicons"><i class="ic " style="--src:url(https://unpkg.com/lucide-static@0.460.0/icons/signal.svg)"></i><i class="ic " style="--src:url(https://unpkg.com/lucide-static@0.460.0/icons/wifi.svg)"></i><i class="ic " style="--src:url(https://unpkg.com/lucide-static@0.460.0/icons/battery-full.svg)"></i></span></div><div class="scroll">
+    <h1>Bills</h1><div class="lead">Wholesalers on Paytm send their bills here</div>
+    <div class="card" style="border:2px solid var(--sky)">
+      <div class="row"><div style="font-weight:700;font-size:17px">Shree Balaji Traders</div><span class="sub">2 min ago</span></div>
+      <div class="sub" style="margin-top:4px">Sent today's bill from their billing software</div>
+      <div class="hr"></div>
+      <div class="row"><span class="sub">8 items · SBT/2610/0418</span><span style="font-weight:800;font-size:22px">₹15,541</span></div>
+      <div style="display:flex;gap:10px;margin-top:16px"><div class="btn" style="flex:1;height:48px;font-size:16px">Pay now</div><div class="btn light" style="flex:1;height:48px;font-size:16px;border:1px solid var(--line)">Pay from sales</div></div>
+    </div>
+    <div class="card"><div class="row"><div><div style="font-weight:600">Gupta Dairy Supply</div><div class="sub">Paid 19 Oct · 3 items</div></div><div style="font-weight:600">₹4,260</div></div>
+      <div class="hr"></div><div class="row"><div><div style="font-weight:600">Shree Balaji Traders</div><div class="sub">Paid 15 Oct · 11 items</div></div><div style="font-weight:600">₹17,830</div></div>
+      <div class="hr"></div><div class="row"><div><div style="font-weight:600">Noida Cold Drinks Agency</div><div class="sub">Photo · paid 14 Oct · 4 items</div></div><div style="font-weight:600">₹6,120</div></div></div>
+  </div><div class="fade"></div><div class="tabbar"><div class="lg tabs">
+  <div class="tab "><i class="ic " style="--src:url(https://unpkg.com/lucide-static@0.460.0/icons/house.svg)"></i></div>
+  <div class="tab "><i class="ic " style="--src:url(https://unpkg.com/lucide-static@0.460.0/icons/chart-no-axes-column.svg)"></i></div>
+  <div class="tab on"><i class="ic " style="--src:url(https://unpkg.com/lucide-static@0.460.0/icons/receipt-text.svg)"></i></div>
+  </div><div class="lg fab"><i class="ic " style="--src:url(https://unpkg.com/lucide-static@0.460.0/icons/scan-line.svg)"></i></div></div></div></body></html>
