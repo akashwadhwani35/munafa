@@ -7,7 +7,7 @@ fs.mkdirSync(path.join(here, 'shots2'), { recursive: true });
 const b = await puppeteer.launch({ headless: true });
 const p = await b.newPage();
 await p.setViewport({ width: 420, height: 800, deviceScaleFactor: 3 });
-const n = Number(process.argv[2]) || 10;
+const n = Number(process.argv[2]) || 13;
 for (let i = 1; i <= n; i++) {
   await p.goto(`file://${path.join(here, 'index.html')}?shot=${i}`, { waitUntil: 'networkidle0' });
   await p.evaluate(() => document.fonts.ready);

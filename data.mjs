@@ -49,3 +49,19 @@ credit.perDay = Math.ceil((credit.amount + credit.fee) / credit.days);
 credit.shareOfQr = Math.round(credit.perDay / qrPerDay * 100);
 
 export const inr = (n, d = 0) => '₹' + Number(n).toLocaleString('en-IN', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+// credit from the wholesaler: the bill is due 7 days after delivery
+export const dueDate = { short: '28 Oct', long: 'Wed, 28 Oct', remind: '27 Oct' };
+
+// the shop's ledger for October: 14 bills from 3 wholesalers, adds up to monthBuying
+export const ledger = [
+  { name: 'Shree Balaji Traders', bills: 6, total: 102300, due: billTotal, dueOn: '28 Oct' },
+  { name: 'Noida Cold Drinks Agency', bills: 3, total: 83800, due: 0 },
+  { name: 'Gupta Dairy Supply', bills: 5, total: 48900, due: 0 },
+];
+
+// later: the same item cheaper from other sellers (example quotes, not real listings)
+export const betterPrice = {
+  item: 'Fortune Sunflower Oil', pack: '1 L', paying: 148, perMonth: 120,
+  quotes: [{ seller: 'Agarwal Oil Depot', area: 'Sector 18, Noida', price: 141, min: '2 cartons' }, { seller: 'Shiv Shakti Traders', area: 'Ghaziabad', price: 143, min: '1 carton' }],
+};
