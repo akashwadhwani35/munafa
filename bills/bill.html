@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1400px;height:1300px;background:transparent;overflow:hidden;font-family:"Courier New",Courier,monospace}
+.light{position:absolute;inset:0;background:radial-gradient(70% 55% at 35% 25%,rgba(255,250,235,.35),rgba(0,0,0,0) 60%),linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(0,0,0,.25));pointer-events:none;z-index:3}
+.paper{position:absolute;left:160px;top:120px;width:1080px;padding:44px 46px 38px;background:linear-gradient(176deg,#fbfaf5,#f1efe6 70%,#e9e6dc);color:#26272b;
+  transform:perspective(2400px) rotateX(9deg) rotateZ(-2.4deg);transform-origin:50% 0;box-shadow:0 40px 80px rgba(0,0,0,.45),0 6px 14px rgba(0,0,0,.3)}
+.paper::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.018) 0 2px,rgba(0,0,0,0) 2px 5px);pointer-events:none}
+.fold{position:absolute;left:0;right:0;top:46%;height:2px;background:linear-gradient(90deg,rgba(0,0,0,.05),rgba(0,0,0,.12),rgba(0,0,0,.04))}
+.box{border:2px solid #333}
+.c{text-align:center}.b{font-weight:700}
+.hd{display:grid;grid-template-columns:1.3fr 1fr;border-bottom:2px solid #333}
+.hd>div{padding:12px 16px;font-size:19px;line-height:1.45}.hd>div+div{border-left:2px solid #333}
+.name{font-size:30px;font-weight:700;letter-spacing:.04em}
+table{width:100%;border-collapse:collapse;font-size:19px}
+th,td{border-right:1px solid #555;padding:6px 10px;text-align:right}
+th{border-bottom:2px solid #333;font-weight:700}
+td.l,th.l{text-align:left}
+th:last-child,td:last-child{border-right:0}
+tbody tr td{padding-top:7px;padding-bottom:7px}
+.ft{display:grid;grid-template-columns:1fr 330px;border-top:2px solid #333;font-size:19px}
+.ft>div{padding:12px 16px;line-height:1.5}.ft>div+div{border-left:2px solid #333}
+.qr{display:flex;gap:18px;align-items:center;padding:12px 16px;border-top:2px solid #333;font-size:16px;line-height:1.5}
+.qr img{width:150px;height:150px;image-rendering:pixelated}
+.stamp{position:absolute;right:110px;bottom:70px;width:200px;height:200px;border:4px solid rgba(40,70,160,.55);border-radius:50%;color:rgba(40,70,160,.6);font:700 20px Arial;display:flex;align-items:center;justify-content:center;text-align:center;transform:rotate(-14deg)}
+.pen{position:absolute;left:640px;bottom:120px;font:italic 40px "Snell Roundhand","Brush Script MT",cursive;color:rgba(20,40,120,.75);transform:rotate(-6deg)}
+</style></head><body><div class="paper"><div class="fold"></div>
+<div class="c b" style="font-size:22px;margin-bottom:8px;letter-spacing:.2em">TAX INVOICE</div>
+<div class="box">
+  <div class="hd"><div><div class="name">SHREE BALAJI TRADERS</div>Shop 14, Phase 2 Market, Sector 63, Noida 201301<br>Ph 98110 4x4x7 · GSTIN 09AAFCS4821K1Z3</div>
+    <div>Inv No : <b>SBT/2610/0418</b><br>Date &nbsp;&nbsp;: 21/10/2026<br>Route : SEC-62 &nbsp; Salesman : RAJU<br>Party : <b>SHARMA KIRANA STORE</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sector 62, Noida</div></div>
+  <table><thead><tr><th>Sn</th><th class="l">Product</th><th>HSN</th><th>Qty</th><th>MRP</th><th>Rate</th><th>Amount</th></tr></thead><tbody><tr><td>1</td><td class="l">FORTUNE SUNFLOWER OIL 1 L</td><td>1512</td><td>24</td><td>165.00</td><td>148.00</td><td>3552.00</td></tr><tr><td>2</td><td class="l">COCA-COLA 750 ML</td><td>2202</td><td>48</td><td>40.00</td><td>34.00</td><td>1632.00</td></tr><tr><td>3</td><td class="l">AASHIRVAAD ATTA 5 KG</td><td>1101</td><td>12</td><td>260.00</td><td>238.00</td><td>2856.00</td></tr><tr><td>4</td><td class="l">MAGGI MASALA 70 G</td><td>1902</td><td>96</td><td>14.00</td><td>12.40</td><td>1190.40</td></tr><tr><td>5</td><td class="l">PARLE-G ₹10 PACK</td><td>1905</td><td>144</td><td>10.00</td><td>9.10</td><td>1310.40</td></tr><tr><td>6</td><td class="l">SURF EXCEL EASY WASH 1 KG</td><td>3402</td><td>20</td><td>140.00</td><td>118.00</td><td>2360.00</td></tr><tr><td>7</td><td class="l">AMUL BUTTER 100 G</td><td>0405</td><td>30</td><td>58.00</td><td>54.00</td><td>1620.00</td></tr><tr><td>8</td><td class="l">TATA SALT 1 KG</td><td>2501</td><td>40</td><td>28.00</td><td>25.50</td><td>1020.00</td></tr>
+  <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  <div class="ft"><div>Rs. Fifteen Thousand Five Hundred Forty One Only<br><span style="font-size:16px">Rates incl. GST. Goods once sold will not be taken back. E.&amp;O.E.</span></div>
+    <div>Gross &nbsp;&nbsp;&nbsp;&nbsp;: 15540.80<br>Round off : 0.20<br><b style="font-size:24px">NET &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 15,541.00</b></div></div>
+  <div class="qr"><img src="data:image/png;base64,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" alt=""><div>e-Invoice<br>IRN : 7f3a91c2e0b84d6a9f5e21c7b3d08a4e<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6c19f2a7d5e3b0c8a1f4e7d2b9c6a3f0<br>Ack No : 132619847203516 &nbsp; Ack Dt : 21/10/2026</div></div>
+</div><div class="stamp">SHREE BALAJI<br>TRADERS<br>NOIDA</div><div class="pen">Raju</div></div></body></html>

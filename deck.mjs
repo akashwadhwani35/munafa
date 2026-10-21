@@ -11,18 +11,17 @@ const coke = D.items.find(i => i.name.startsWith('Coca'));
 const surf = D.items.find(i => i.name.startsWith('Surf'));
 
 // smaller copies of the screens for the deck, so the PDF stays under 2 MB
-fs.mkdirSync(path.join(here, 'shots/sm'), { recursive: true });
-for (const f of fs.readdirSync(path.join(here, 'shots')).filter(f => f.endsWith('.png'))) {
-  await sharp(path.join(here, 'shots', f)).resize({ height: 1000 }).png({ palette: true, quality: 90, effort: 10 }).toFile(path.join(here, 'shots/sm', f));
-}
-const ph = (n, cls = '') => `<img class="ph ${cls}" src="shots/sm/${n}.png" alt="">`;
+const NUM = { home: 1, scan: 2, bill: 3, paid: 4, munafa: 5, insight: 6, shelves: 7, voice: 8, credit: 9, request: 10 };
+fs.mkdirSync(path.join(here, 'shots2/sm'), { recursive: true });
+for (const n of Object.values(NUM)) await sharp(path.join(here, 'shots2', n + '.png')).resize({ height: 1100 }).png({ palette: true, quality: 90, effort: 10 }).toFile(path.join(here, 'shots2/sm', n + '.png'));
+const ph = (n, cls = '') => `<img class="ph ${cls}" src="shots2/sm/${NUM[n]}.png" alt="">`;
 const foot = n => `<div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>${n}</span></div>`;
 
 const slides = [
   // 1
   `<section class="dark split">
     <div class="col">
-      <h1 class="hero">Munafa</h1>
+      <img src="brand/paytm-app.svg" alt="Paytm" style="height:30px;display:block;margin-bottom:36px"><h1 class="hero">Munafa</h1>
       <p class="lede">Pay your wholesaler by photographing the bill. Find out what each item in your shop really earns.</p>
       <p class="meta">Paytm Build for India AI Hackathon, Delhi · Track 1: Merchant Growth AI<br>Akash Wadhwani · sheets.works</p>
     </div>${ph('home', 'tall')}</section>`,
@@ -119,34 +118,34 @@ const slides = [
   `<section class="dark split">
     <div class="col"><h2 class="w">What we will build on 31 October</h2>
       <ol><li>Photograph a real wholesaler bill from a Noida kirana, live</li><li>Read every line, check the totals, show margin per item</li><li>Pay it by UPI in test mode</li><li>Munafa after a month of bills, with the Hindi voice note</li><li>The stock-credit offer, and Paytm's view of the shop</li></ol>
-      <p class="meta">Akash Wadhwani · sheets.works<br>Clickable demo: akashwadhwani35.github.io/munafa</p></div>${ph('insight', 'tall')}</section>`,
+      <p class="meta">Akash Wadhwani · sheets.works<br>Clickable demo: akashwadhwani35.github.io/munafa</p></div>${ph('bill', 'tall')}</section>`,
 ];
 
 const css = `
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=block');
 @page{size:1280px 720px;margin:0}
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--ink:#111214;--sub:#5f6066;--navy:#002e6e;--sky:#00baf2;--bg:#f3f4f6;--tint:#eaf8fe}
+:root{--ink:#1d1d1f;--sub:#6e6e73;--navy:#012a72;--sky:#00b8f5;--bg:#f5f5f7;--tint:#e6f6fd}
 body{font-family:Inter,Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;background:#888}
 section{position:relative;width:1280px;height:720px;background:var(--bg);padding:44px 56px 60px;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
 @media screen{section{margin:0 auto 24px}}
-.dark{background:var(--navy);color:#fff}
+.dark{background:#fff;color:var(--ink)}
 .split{flex-direction:row;align-items:center;justify-content:space-between;padding:56px 80px}
 .col{max-width:640px}
-.hero{font-size:96px;font-weight:800;letter-spacing:-.03em}
-.lede{font-size:28px;line-height:1.35;margin-top:20px;font-weight:500}
-.meta{font-size:16px;line-height:1.6;color:#b9c4d6;margin-top:56px}
-h2{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:28px}
-h2.w{color:#fff}
-h3{font-size:22px;font-weight:700;line-height:1.3}
+.hero{font-size:88px;font-weight:600;letter-spacing:-.03em}
+.lede{font-size:26px;line-height:1.4;margin-top:20px;font-weight:400;color:#3a3a3c}
+.meta{font-size:16px;line-height:1.6;color:var(--sub);margin-top:56px}
+h2{font-size:34px;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:28px}
+h2.w{color:var(--ink)}
+h3{font-size:22px;font-weight:600;line-height:1.3}
 p{font-size:18px;line-height:1.5}
 .mute{color:var(--sub)}
-.strong{font-weight:700;color:var(--navy)}
+.strong{font-weight:500;color:var(--navy)}
 .blue{color:var(--navy)}
 .src{font-size:12px;color:var(--sub);margin-top:auto}
-.num{font-size:64px;font-weight:800;letter-spacing:-.03em;color:var(--navy);margin:8px 0}
+.num{font-size:64px;font-weight:600;letter-spacing:-.03em;color:var(--navy);margin:8px 0}
 .big{font-size:22px;line-height:1.45;margin-bottom:22px}
-.card{background:#fff;border-radius:20px;padding:24px 26px;display:flex;flex-direction:column;gap:10px}
+.card{background:#fff;border-radius:24px;padding:24px 26px;display:flex;flex-direction:column;gap:10px}
 .card.tint{background:var(--tint)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1}
 .two.lop{grid-template-columns:1fr 1.7fr;flex:none}
@@ -154,27 +153,27 @@ p{font-size:18px;line-height:1.5}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
 ul{padding-left:22px;display:flex;flex-direction:column;gap:14px;font-size:20px;line-height:1.4}
 ol{padding-left:26px;display:flex;flex-direction:column;gap:14px;font-size:21px;line-height:1.35;margin-top:8px}
-.ph{height:560px;width:auto;flex:none;border-radius:31px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-.ph.tall{height:620px}
+.ph{height:540px;width:auto;flex:none}
+.ph.tall{height:640px}
 .pair{display:flex;gap:28px;align-items:flex-start}
 .text{display:flex;flex-direction:column;gap:16px;padding-top:8px;max-width:520px;height:560px}
 .text.wide{max-width:none;flex:1}
 .steps{display:flex;flex-direction:column;gap:36px;padding-top:30px;flex:1}
 .step{display:flex;gap:20px;align-items:flex-start}
-.step b{flex:none;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
+.step b{flex:none;font-weight:500;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
 .step h3{font-size:22px;margin-bottom:6px}
 .four{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;justify-items:center}
-.four .ph{height:500px}
+.four .ph{height:510px}
 figcaption{text-align:center;margin-top:12px;display:flex;flex-direction:column;gap:2px}
-figcaption b{font-size:17px}figcaption span{font-size:13px;color:var(--sub)}
+figcaption b{font-size:17px;font-weight:500}figcaption span{font-size:13px;color:var(--sub)}
 .card.row{flex-direction:row;align-items:flex-start;gap:20px;padding:20px 24px}
 .lab{flex:none;width:170px;color:var(--navy)}
 .stack{gap:14px 20px}.stack .card.row p{font-size:16.5px}
 .stack .lab{width:150px;font-size:17px}
-.k{font-size:15px;color:var(--sub)}.v{font-size:21px;font-weight:700;margin-bottom:10px}
+.k{font-size:15px;color:var(--sub)}.v{font-size:21px;font-weight:500;margin-bottom:10px}
 .table{display:flex;flex-direction:column;gap:14px}
 .th,.tr{display:grid;grid-template-columns:220px 1fr 1fr;gap:28px;align-items:start}
-.th{padding:0 26px;font-size:14px;font-weight:700;color:var(--sub)}
+.th{padding:0 26px;font-size:14px;font-weight:600;color:var(--sub)}
 .tr{flex-direction:row}
 .tallc{min-height:470px}.tr p{font-size:18px}.tr{padding:28px 26px}.th{font-size:16px}.table{gap:18px}
 .fill{flex:1;grid-auto-rows:1fr;margin-bottom:24px}.fill .card{justify-content:center;padding:28px 32px}.fill p{font-size:19px}.three .card p{font-size:18px}.lop .card{min-height:420px}.foot{position:absolute;left:56px;right:56px;bottom:22px;display:flex;justify-content:space-between;font-size:12px;color:var(--sub)}

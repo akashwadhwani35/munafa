@@ -1,63 +1,231 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Munafa, a clickable prototype</title>
 <meta name="description" content="Pay your wholesaler by photographing the bill, and see what each item in your shop earns. Paytm Build for India AI Hackathon, Track 1.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="screens/liquid-glass.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500&display=block" rel="stylesheet">
 <style>
-:root{--bg:#f6f6f7;--ink:#111214;--sub:#5f6066;--navy:#002e6e}
+:root{--navy:#012a72;--sky:#00b8f5;--ink:#1d1d1f;--sub:#6e6e73;--ok:#21c179;--line:#eef0f3}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
-header{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;max-width:1120px;margin:0 auto}
-header b{font-size:20px;font-weight:800;letter-spacing:-.02em}
-header a{color:var(--navy);font-weight:600;font-size:15px;text-decoration:none}
-main{max-width:1120px;margin:0 auto;padding:16px 32px 48px;display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center}
-.n{font-size:14px;color:var(--sub);font-weight:600}
-h1{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1.08;margin:10px 0 16px}
-.cap p{font-size:20px;line-height:1.5;color:#2a2b2f;max-width:30ch}
-.phone{position:relative;height:min(844px,calc(100svh - 120px));aspect-ratio:390/844;justify-self:center;border:0;background:none;cursor:pointer;padding:0}
-.phone img{position:absolute;inset:0;width:100%;height:100%;border-radius:46px;box-shadow:0 20px 50px rgba(0,0,0,.12);opacity:0}
-.phone img.on{opacity:1}
-.ctrl{display:flex;align-items:center;gap:6px;height:56px;padding:0 6px;margin-top:36px;width:max-content}
-.ctrl button{border:0;background:none;font:600 16px Inter,sans-serif;color:var(--ink);height:44px;padding:0 18px;border-radius:999px;cursor:pointer}
-.ctrl button:disabled{opacity:.3;cursor:default}
-.ctrl button:focus-visible,.phone:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
-.dots{display:flex;gap:6px;padding:0 6px}
-.dots i{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.18)}
-.dots i.on{background:var(--navy);width:22px;border-radius:4px}
-footer{max-width:1120px;margin:0 auto;padding:0 32px 32px;font-size:13px;color:var(--sub);line-height:1.5}
-@media (max-width:860px){
-  header{padding:14px 16px}
-  main{grid-template-columns:1fr;gap:16px;padding:0 16px 100px}
-  h1{font-size:26px;margin:2px 0 6px}.cap p{font-size:16px;line-height:1.45}.n{font-size:13px}
-  .phone{height:calc(100svh - 330px);min-height:340px;margin:0 auto}.phone img{border-radius:clamp(24px,5.4vh,46px)}
-  .ctrl{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);margin:0;z-index:5}
-  footer{padding:0 16px 96px}
-}
-</style></head><body>
-<header><b>Munafa</b><a href="Munafa-deck.pdf">Deck (PDF)</a></header>
-<main>
-  <div class="cap"><div class="n" id="n"></div><h1 id="t"></h1><p id="p"></p>
-    <div class="lg ctrl" role="group" aria-label="Steps"><button id="back">Back</button><span class="dots" id="dots"></span><button id="next">Next</button></div></div>
-  <button class="phone" id="phone" aria-label="Next screen"><img src="shots/web/home.png" alt="" ><img src="shots/web/scan.png" alt="" loading="eager"><img src="shots/web/bill.png" alt="" loading="eager"><img src="shots/web/paid.png" alt="" loading="eager"><img src="shots/web/munafa.png" alt="" loading="eager"><img src="shots/web/insight.png" alt="" loading="eager"><img src="shots/web/shelves.png" alt="" loading="eager"><img src="shots/web/voice.png" alt="" loading="eager"><img src="shots/web/credit.png" alt="" loading="eager"><img src="shots/web/request.png" alt="" loading="eager"></button>
-</main>
-<footer>A clickable prototype with a sample shop and a made-up bill. The working version gets built on 31 October 2026 at the Paytm Build for India AI Hackathon, Noida. Tap the phone or use the arrow keys.</footer>
+body{background:#f5f5f7;color:var(--ink);font-family:Inter,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;font-feature-settings:"tnum" 1}
+.top{width:100%;max-width:1080px;display:flex;justify-content:space-between;padding:22px 28px;font-size:15px}
+.top b{font-weight:600}.top a{color:var(--navy);text-decoration:none}
+.stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:4px 16px 32px}
+.line{font-size:17px;color:var(--sub);text-align:center;max-width:36ch;line-height:1.45;min-height:2.9em}
+.dots{display:flex;gap:6px}.dots i{width:6px;height:6px;border-radius:3px;background:#c7c7cc}.dots i.on{width:18px;background:var(--navy)}
+.ph{--w:min(330px,calc((100svh - 250px) * .46),calc(100vw - 48px));width:var(--w);aspect-ratio:1206/2622;position:relative;border-radius:calc(var(--w)*.195);background:linear-gradient(160deg,#4a4a4e,#1e1e21 45%,#3a3a3e);padding:calc(var(--w)*.012);box-shadow:inset 0 0 0 calc(var(--w)*.004) rgba(255,255,255,.25),0 30px 60px rgba(0,0,0,.14);flex:none;cursor:pointer;border:0;display:block;font:inherit;color:inherit;text-align:left;-webkit-appearance:none;appearance:none}
+.ph::before{content:"";position:absolute;inset:calc(var(--w)*.012);border-radius:calc(var(--w)*.185);background:#0b0b0d}
+.ph .scr{position:absolute;inset:calc(var(--w)*.034);border-radius:calc(var(--w)*.165);overflow:hidden;background:#000}
+.ph .b{position:absolute;background:#2a2a2d;border-radius:2px;width:calc(var(--w)*.012)}
+.ph .b.l1{left:calc(var(--w)*-.012);top:18%;height:5%}.ph .b.l2{left:calc(var(--w)*-.012);top:26%;height:9%}.ph .b.l3{left:calc(var(--w)*-.012);top:37%;height:9%}.ph .b.r1{right:calc(var(--w)*-.012);top:30%;height:14%}
+.ph:focus-visible{outline:2px solid var(--navy);outline-offset:6px}
+.view{position:absolute;left:0;top:0;width:402px;transform-origin:0 0}
+.app{position:absolute;inset:0;display:none;background:linear-gradient(#e4edf7,#f2f4f7 300px);font-size:15px;text-align:left;overflow:hidden}
+.app.on{display:block}
+.app.dark{background:#111}
+.sb{height:54px;display:flex;align-items:center;justify-content:space-between;padding:4px 32px 0 42px;font-weight:600;font-size:17px;color:#000;position:relative;z-index:6}
+.sb.lt{color:#fff}
+.di{position:absolute;left:50%;top:11px;width:126px;height:37px;border-radius:19px;background:#000;transform:translateX(-50%)}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:10px 22px 0}
+.hd img{height:22px}
+.av{width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:600;color:var(--navy);font-size:14px}
+.body{padding:24px 22px 140px}.body.tight{padding-top:8px}
+.k{font-size:14px;color:var(--sub);line-height:1.4}.k.s{font-size:13px}
+.m{font-weight:500}.lgm{font-size:17px}
+.lab{margin:24px 0 8px}
+h1{font-size:26px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin:6px 0 4px}
+h1.lg{font-size:32px;margin:12px 0 4px}
+.amt{font-size:40px;font-weight:600;letter-spacing:-.02em;margin:4px 0 2px;line-height:1.1}
+.amt.sm{font-size:26px}
+.card{background:#fff;border-radius:22px;padding:18px 20px;margin-top:14px}
+.card.list{padding:2px 20px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.r{text-align:right}
+.li{padding:13px 0;border-top:1px solid var(--line)}.li.first{border-top:0}
+.pay .t{font-size:17px;font-weight:600;margin-bottom:2px}
+.cam{width:48px;height:48px;border-radius:50%;background:var(--navy);display:grid;place-items:center;flex:none}
+.spark{display:flex;align-items:flex-end;gap:5px;height:44px;margin-top:14px}
+.spark i{flex:1;background:#d8e6f6;border-radius:3px}.spark i.on{background:var(--sky)}
+.tab{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);display:flex;gap:4px;padding:6px;border-radius:999px;z-index:5;
+  background:rgba(1,42,114,.86);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 10px 30px rgba(1,42,114,.28)}
+.tab span{display:flex;flex-direction:column;align-items:center;gap:3px;width:84px;padding:8px 0 6px;color:rgba(255,255,255,.75);font-size:12px;border-radius:999px}
+.tab span.on{background:rgba(255,255,255,.16);color:#fff}
+.gl{background:rgba(255,255,255,.66);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 0 0 .5px rgba(255,255,255,.4),0 1px 2px rgba(0,0,0,.06),0 10px 30px rgba(0,0,0,.08)}
+.gl.dark{background:rgba(40,40,44,.42);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 0 0 .5px rgba(255,255,255,.15)}
+.round{width:40px;height:40px;border-radius:50%;display:grid;place-items:center}.round.big{width:52px;height:52px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:6px 18px 0}
+.nt{font-weight:600;font-size:17px}
+.ok{display:inline-flex;align-items:center;gap:6px;color:#159a5c;font-size:13px;font-weight:500;margin-top:10px}
+.bar{position:absolute;left:14px;right:14px;bottom:26px;border-radius:32px;padding:10px;z-index:5}
+.bt{padding:4px 12px 10px}
+.btn{height:52px;border-radius:999px;background:var(--navy);color:#fff;font-weight:600;font-size:17px;display:grid;place-items:center}
+.btn.ghost{background:transparent;color:var(--navy)}
+.btn.mini{height:38px;padding:0 14px;font-size:14px;display:inline-grid;white-space:nowrap}
+.btn.mini.ghost{background:#eef4fb}
+.pair{display:flex;gap:8px}
+.req{box-shadow:0 0 0 2px var(--sky)}
+.cam-bg{position:absolute;inset:0;background:radial-gradient(120% 70% at 40% 25%,#7d8084,#4d5054 55%,#2e3033)}.cam-bg img{position:absolute;left:-22px;top:92px;width:446px;height:auto}
+.frame{position:absolute;left:14px;right:14px;top:112px;height:400px;pointer-events:none}
+.frame i{position:absolute;width:40px;height:40px;border:3px solid #fff}
+.frame i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0;border-top-left-radius:16px}
+.frame i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0;border-top-right-radius:16px}
+.frame i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0;border-bottom-left-radius:16px}
+.frame i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0;border-bottom-right-radius:16px}
+.scantop{position:absolute;left:18px;right:18px;top:58px;display:flex;align-items:center;justify-content:space-between;z-index:4}
+.chip{height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-weight:500;font-size:14px}
+.shutter{position:absolute;left:0;right:0;bottom:44px;display:flex;align-items:center;justify-content:center;gap:52px;z-index:4}
+.sh{width:76px;height:76px;border-radius:50%;border:4px solid #fff;display:grid;place-items:center}.sh i{width:60px;height:60px;border-radius:50%;background:#fff}
+.paid{text-align:center;padding:18px 22px 0;background:linear-gradient(#e4edf7,#eef3f9)}
+.plogo{height:24px;margin:2px auto 22px;display:block}
+.to{font-size:21px;font-weight:600}
+.big{font-size:52px;font-weight:600;letter-spacing:-.02em;margin:22px 0 14px;display:inline-flex;align-items:center;gap:12px}
+.badge{width:38px;height:38px;border-radius:50%;background:var(--ok);display:grid;place-items:center}
+.paid .k{padding-bottom:22px}
+.bi{margin-top:14px}.bi .row{font-size:15px}
+.track{height:8px;border-radius:4px;background:#eef1f5;margin:6px 0 4px}.track i{display:block;height:8px;border-radius:4px;background:var(--navy)}.track i.hi{background:var(--sky)}
+.days{display:flex;gap:3px;margin:8px 0 6px}.days i{flex:1;height:20px;border-radius:3px;background:#eef1f5}.days i.on{background:var(--sky)}
+.note{background:#e6f6fd;font-weight:500;line-height:1.5;color:#0b2f6b}
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.22);z-index:4}
+.sheet{position:absolute;left:8px;right:8px;bottom:8px;border-radius:44px;padding:16px 24px 34px;z-index:5;background:rgba(255,255,255,.86)}
+.grab{display:block;width:38px;height:5px;border-radius:3px;background:rgba(0,0,0,.18);margin:0 auto 16px}
+.playb{width:54px;height:54px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center}
+.wave{display:flex;align-items:center;gap:3px;height:40px;margin:18px 0}.wave i{flex:1;border-radius:2px;background:#c9ccd3}.wave i.on{background:var(--navy)}
+.hi-text{font-family:"Noto Sans Devanagari",Inter,sans-serif;font-size:17px;line-height:1.7}
+body.shot{background:transparent;display:block;min-height:0}
+body.shot .top,body.shot .line,body.shot .dots{display:none}
+body.shot .stage{padding:0;display:block}
+body.shot .ph{--w:340px;box-shadow:inset 0 0 0 1.4px rgba(255,255,255,.25)}
+</style></head>
+<body>
+<div class="top"><b>Munafa</b><a href="Munafa-deck.pdf">Deck</a></div>
+<div class="stage">
+  <button class="ph" id="ph" aria-label="Next screen"><i class="b l1"></i><i class="b l2"></i><i class="b l3"></i><i class="b r1"></i><span class="scr" id="scr"><span class="view" id="view">
+<div class="app "><div class="sb"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="hd"><img src="brand/paytm-app.svg" alt="Paytm"><span class="av">SK</span></div><div class="body">
+  <div class="k">Sharma Kirana · today on your QR</div><div class="amt">₹5,180</div><div class="k">63 payments</div>
+  <div class="card pay tap"><div class="row"><div><div class="t">Pay a wholesaler bill</div><div class="k">Take a photo of the bill</div></div><span class="cam"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span></div></div>
+  <div class="card"><div class="row"><span class="k">Munafa this week</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6e6e73" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></div>
+  <div class="amt sm">₹8,900</div>
+  <div class="spark"><i class="" style="height:52%"></i><i class="" style="height:64%"></i><i class="" style="height:48%"></i><i class="" style="height:71%"></i><i class="" style="height:60%"></i><i class="" style="height:83%"></i><i class="on" style="height:100%"></i></div></div><div class="k lab">Bills paid here</div><div class="card list">
+  <div class="row li first"><div><div class="m">Gupta Dairy Supply</div><div class="k s">19 Oct · 3 items</div></div><div class="r"><div class="m">₹4,260</div></div></div><div class="row li"><div><div class="m">Shree Balaji Traders</div><div class="k s">15 Oct · 11 items</div></div><div class="r"><div class="m">₹17,830</div></div></div><div class="row li"><div><div class="m">Noida Cold Drinks Agency</div><div class="k s">14 Oct · 4 items</div></div><div class="r"><div class="m">₹6,120</div></div></div></div></div><nav class="tab"><span class="on"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z"/></svg>Home</span><span class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></svg>Scan bill</span><span class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6"/></svg>Munafa</span></nav></div>
+<div class="app dark"><div class="sb lt"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="cam-bg"><img src="bills/bill.png" alt="The wholesaler's bill"></div>
+  <div class="frame"><i></i><i></i><i></i><i></i></div>
+  <div class="scantop"><span class="gl dark round"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span class="gl dark chip">Reading 8 items</span><span style="width:40px"></span></div>
+  <div class="shutter"><span class="gl dark round big"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M20 16l-5-5-8 8"/></svg></span><span class="sh tap"><i></i></span><span class="gl dark round big"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg></span></div></div>
+<div class="app "><div class="sb"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="nav"><span class="gl round"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span><span style="width:40px"></span></div><div class="body tight">
+  <div class="ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#159a5c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>GST e-invoice verified</div>
+  <h1>Shree Balaji Traders</h1><div class="k">Bill SBT/2610/0418 · 21 Oct 2026</div>
+  <div class="card list"><div class="row li first"><div><div class="m">Fortune Sunflower Oil</div><div class="k s">24 × ₹148 · MRP ₹165</div></div><div class="r"><div class="m">₹3,552</div><div class="k s">you keep 10%</div></div></div><div class="row li"><div><div class="m">Coca-Cola</div><div class="k s">48 × ₹34 · MRP ₹40</div></div><div class="r"><div class="m">₹1,632</div><div class="k s">you keep 15%</div></div></div><div class="row li"><div><div class="m">Aashirvaad Atta</div><div class="k s">12 × ₹238 · MRP ₹260</div></div><div class="r"><div class="m">₹2,856</div><div class="k s">you keep 8%</div></div></div><div class="row li"><div><div class="m">Maggi Masala</div><div class="k s">96 × ₹12.40 · MRP ₹14</div></div><div class="r"><div class="m">₹1,190</div><div class="k s">you keep 11%</div></div></div><div class="row li"><div><div class="m">Parle-G</div><div class="k s">144 × ₹9.10 · MRP ₹10</div></div><div class="r"><div class="m">₹1,310</div><div class="k s">you keep 9%</div></div></div><div class="row li"><div><div class="m">Surf Excel Easy Wash</div><div class="k s">20 × ₹118 · MRP ₹140</div></div><div class="r"><div class="m">₹2,360</div><div class="k s">you keep 16%</div></div></div><div class="row li"><div><div class="m">Amul Butter</div><div class="k s">30 × ₹54 · MRP ₹58</div></div><div class="r"><div class="m">₹1,620</div><div class="k s">you keep 7%</div></div></div><div class="row li"><div><div class="m">Tata Salt</div><div class="k s">40 × ₹25.50 · MRP ₹28</div></div><div class="r"><div class="m">₹1,020</div><div class="k s">you keep 9%</div></div></div></div></div>
+  <div class="gl bar"><div class="row bt"><span class="k">8 items</span><span class="m">₹15,541</span></div><div class="btn tap">Pay ₹15,541</div></div></div>
+<div class="app "><div class="sb"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="paid">
+  <img class="plogo" src="brand/paytm-app.svg" alt="Paytm">
+  <div class="to">Shree Balaji Traders</div><div class="k">UPI ID: ******4821@okhdfcbank</div>
+  <div class="big">₹15,541<span class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div>
+  <div class="k">21 Oct, 7:42 PM · Ref. No: 218615822684</div></div>
+  <div class="body"><div class="card"><div class="m">Bill saved with this payment</div><div class="k" style="margin-top:4px">SBT/2610/0418 · 8 items added to your stock</div></div>
+  <div class="card"><div class="m">Munafa updates tonight</div><div class="k" style="margin-top:4px">Surf Excel is new this month. We'll learn how fast it sells.</div></div></div>
+  <div class="gl bar"><div class="btn ghost tap">Done</div></div></div>
+<div class="app "><div class="sb"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="body">
+  <h1 class="lg">Munafa</h1><div class="k">Last 30 days · 14 bills · 3 wholesalers</div>
+  <div class="card"><div class="k">You earned about</div><div class="amt">₹38,200</div><div class="k">on ₹2,35,000 of stock, 14% on average</div></div>
+  <div class="card tap"><div class="m">Earned per week</div><div class="k">Margin on each item, times how fast it sells</div>
+  <div class="bi"><div class="row"><span>Coca-Cola</span><span class="m">₹504</span></div>
+    <div class="track"><i style="width:100%" class="hi"></i></div>
+    <div class="k s">15% margin · sells in 4 days</div></div><div class="bi"><div class="row"><span>Fortune Sunflower Oil</span><span class="m">₹476</span></div>
+    <div class="track"><i style="width:94%" class=""></i></div>
+    <div class="k s">10% margin · sells in 6 days</div></div><div class="bi"><div class="row"><span>Aashirvaad Atta</span><span class="m">₹370</span></div>
+    <div class="track"><i style="width:73%" class=""></i></div>
+    <div class="k s">8% margin · sells in 5 days</div></div><div class="bi"><div class="row"><span>Maggi Masala</span><span class="m">₹215</span></div>
+    <div class="track"><i style="width:43%" class=""></i></div>
+    <div class="k s">11% margin · sells in 5 days</div></div><div class="bi"><div class="row"><span>Parle-G</span><span class="m">₹151</span></div>
+    <div class="track"><i style="width:30%" class=""></i></div>
+    <div class="k s">9% margin · sells in 6 days</div></div><div class="bi"><div class="row"><span>Surf Excel Easy Wash</span><span class="m">₹128</span></div>
+    <div class="track"><i style="width:25%" class="hi"></i></div>
+    <div class="k s">16% margin · sells in 24 days</div></div></div></div><nav class="tab"><span class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z"/></svg>Home</span><span class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></svg>Scan bill</span><span class="on"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6"/></svg>Munafa</span></nav></div>
+<div class="app "><div class="sb"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="nav"><span class="gl round"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span><span class="nt">Munafa</span><span style="width:40px"></span></div><div class="body tight">
+  <div class="card"><div class="row"><div><div class="m lgm">Coca-Cola</div><div class="k">750 ml · 15% margin</div></div><div class="r"><div class="amt sm">₹504</div><div class="k">a week</div></div></div>
+    <div class="k" style="margin-top:14px">A bill of 48 sells in 4 days</div>
+    <div class="days"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
+    <div class="k s">Each blue day is a new bill, over 4 weeks</div></div><div class="card"><div class="row"><div><div class="m lgm">Surf Excel Easy Wash</div><div class="k">1 kg · 16% margin</div></div><div class="r"><div class="amt sm">₹128</div><div class="k">a week</div></div></div>
+    <div class="k" style="margin-top:14px">A bill of 20 sells in 24 days</div>
+    <div class="days"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
+    <div class="k s">Each blue day is a new bill, over 4 weeks</div></div>
+  <div class="card note tap">Coca-Cola earns you 4 times more each week. Next time, order 10 Surf Excel, not 20, and keep ₹1,180 in hand.</div></div></div>
+<div class="app "><div class="sb"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="body">
+  <h1 class="lg">On your shelves</h1><div class="k">Stock you've paid for that hasn't sold yet</div>
+  <div class="card"><div class="amt">₹41,170</div><div class="k">Your stock sells in about 5 days</div></div>
+  <div class="k lab">Sitting the longest</div><div class="card list tap">
+  <div class="row li first"><div><div class="m">Horlicks</div><div class="k s">500 g · ₹2,960 on the shelf</div></div><div class="r"><div class="m">38 days</div></div></div><div class="row li"><div><div class="m">Dettol Soap</div><div class="k s">4 × 75 g · ₹1,840 on the shelf</div></div><div class="r"><div class="m">31 days</div></div></div><div class="row li"><div><div class="m">Surf Excel Easy Wash</div><div class="k s">1 kg · ₹1,180 on the shelf</div></div><div class="r"><div class="m">24 days</div></div></div><div class="row li"><div><div class="m">Tata Salt</div><div class="k s">1 kg · ₹510 on the shelf</div></div><div class="r"><div class="m">10 days</div></div></div></div></div><nav class="tab"><span class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z"/></svg>Home</span><span class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></svg>Scan bill</span><span class="on"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6"/></svg>Munafa</span></nav></div>
+<div class="app "><div class="sb"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="body"><h1 class="lg">Munafa</h1><div class="k">Last 30 days · 14 bills · 3 wholesalers</div>
+  <div class="card"><div class="k">You earned about</div><div class="amt">₹38,200</div></div></div>
+  <div class="scrim"></div><div class="gl sheet tap"><i class="grab"></i>
+  <div class="row"><div><div class="m lgm">Tonight's note</div><div class="k">Hindi · 0:24</div></div><span class="playb"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg></span></div>
+  <div class="wave"><i class="on" style="height:7px"></i><i class="on" style="height:30px"></i><i class="on" style="height:11px"></i><i class="on" style="height:12px"></i><i class="on" style="height:10px"></i><i class="on" style="height:20px"></i><i class="on" style="height:23px"></i><i class="on" style="height:23px"></i><i class="on" style="height:27px"></i><i class="on" style="height:13px"></i><i class="on" style="height:12px"></i><i class="on" style="height:8px"></i><i class="on" style="height:23px"></i><i class="on" style="height:10px"></i><i class="on" style="height:32px"></i><i class="on" style="height:15px"></i><i class="on" style="height:21px"></i><i class="" style="height:10px"></i><i class="" style="height:12px"></i><i class="" style="height:20px"></i><i class="" style="height:20px"></i><i class="" style="height:31px"></i><i class="" style="height:14px"></i><i class="" style="height:22px"></i><i class="" style="height:7px"></i><i class="" style="height:14px"></i><i class="" style="height:11px"></i><i class="" style="height:29px"></i><i class="" style="height:19px"></i><i class="" style="height:26px"></i><i class="" style="height:17px"></i><i class="" style="height:10px"></i><i class="" style="height:13px"></i><i class="" style="height:14px"></i><i class="" style="height:30px"></i><i class="" style="height:12px"></i><i class="" style="height:30px"></i><i class="" style="height:8px"></i><i class="" style="height:12px"></i><i class="" style="height:9px"></i><i class="" style="height:22px"></i><i class="" style="height:20px"></i><i class="" style="height:27px"></i><i class="" style="height:24px"></i><i class="" style="height:16px"></i><i class="" style="height:11px"></i><i class="" style="height:9px"></i><i class="" style="height:24px"></i></div>
+  <div class="hi-text">शर्मा जी, इस हफ़्ते आपने लगभग ₹8,900 कमाए। सबसे ज़्यादा कमाई कोका-कोला और फॉर्च्यून तेल से हुई। सर्फ़ एक्सेल पर मार्जिन अच्छा है, पर वह 24 दिन शेल्फ़ पर पड़ा रहता है। अगली बार 20 की जगह 10 मँगाइए।</div></div></div>
+<div class="app "><div class="sb"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="nav"><span class="gl round"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span><span style="width:40px"></span></div><div class="body tight">
+  <h1>Pay Balaji's next bill today</h1><div class="k">Paytm pays the wholesaler now. You repay a little each day from your QR.</div>
+  <div class="card"><div class="row"><div><div class="k">Up to</div><div class="amt">₹15,000</div></div><div class="r"><div class="k">You repay</div><div class="amt sm">₹508<span class="k"> a day</span></div></div></div>
+    <div class="row li first" style="margin-top:10px"><span class="k">30 days · fee ₹225</span><span class="k">9% of your daily QR</span></div></div>
+  <div class="k lab">Why you got this</div><div class="card list">
+    <div class="row li first"><div><div class="m">Your stock sells in 5 days</div><div class="k s">From 14 bills over 30 days</div></div><div class="r"><div class="m"></div></div></div><div class="row li"><div><div class="m">14 bills paid on time</div><div class="k s">All through Paytm</div></div><div class="r"><div class="m"></div></div></div><div class="row li"><div><div class="m">About ₹5,400 a day on your QR</div><div class="k s">Last 30 days</div></div><div class="r"><div class="m"></div></div></div></div>
+  <div class="k s" style="margin-top:12px">Example terms for this demo. A lending partner sets the real ones.</div></div>
+  <div class="gl bar"><div class="btn tap">Pay ₹15,000 to Balaji</div></div></div>
+<div class="app "><div class="sb"><span>9:41</span><i class="di"></i>
+  <svg width="78" height="14" viewBox="0 0 78 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3.2" height="4" rx="1"/><rect x="4.8" y="6.5" width="3.2" height="6.5" rx="1"/><rect x="9.6" y="4" width="3.2" height="9" rx="1"/><rect x="14.4" y="1" width="3.2" height="12" rx="1"/>
+  <path d="M30.5 3.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 30.5 1.4 10.6 10.6 0 0 0 23 4.5l1.2 1.2a9 9 0 0 1 6.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.2a7 7 0 0 0-9.8 0l1.2 1.2c1-.9 2.3-1.4 3.7-1.4zm0 3.5c-.6 0-1.1.2-1.5.6l1.5 1.5 1.5-1.5c-.4-.4-.9-.6-1.5-.6z"/>
+  <rect x="46.5" y="1" width="25" height="12" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="48.5" y="3" width="18" height="8" rx="2"/><rect x="73" y="5" width="1.6" height="4" rx=".8" fill-opacity=".45"/></g></svg></div><div class="hd"><img src="brand/paytm-app.svg" alt="Paytm"><span class="av">SK</span></div><div class="body">
+  <div class="k">Sharma Kirana · today on your QR</div><div class="amt">₹6,240</div><div class="k">71 payments</div>
+  <div class="card req tap"><div class="row"><div class="m">New bill from Shree Balaji Traders</div><span class="k s">2 min ago</span></div>
+    <div class="k" style="margin-top:2px">Sent from their billing software · 8 items</div>
+    <div class="row" style="margin-top:14px"><span class="amt sm">₹15,541</span><div class="pair"><span class="btn mini">Pay</span><span class="btn mini ghost">Pay from sales</span></div></div></div>
+  <div class="card"><div class="row"><span class="k">Munafa this week</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6e6e73" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></div>
+  <div class="amt sm">₹8,900</div>
+  <div class="spark"><i class="" style="height:52%"></i><i class="" style="height:64%"></i><i class="" style="height:48%"></i><i class="" style="height:71%"></i><i class="" style="height:60%"></i><i class="" style="height:83%"></i><i class="on" style="height:100%"></i></div></div><div class="k lab">Bills paid here</div><div class="card list">
+  <div class="row li first"><div><div class="m">Gupta Dairy Supply</div><div class="k s">19 Oct · 3 items</div></div><div class="r"><div class="m">₹4,260</div></div></div><div class="row li"><div><div class="m">Shree Balaji Traders</div><div class="k s">15 Oct · 11 items</div></div><div class="r"><div class="m">₹17,830</div></div></div><div class="row li"><div><div class="m">Noida Cold Drinks Agency</div><div class="k s">14 Oct · 4 items</div></div><div class="r"><div class="m">₹6,120</div></div></div></div></div><nav class="tab"><span class="on"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z"/></svg>Home</span><span class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></svg>Scan bill</span><span class=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6"/></svg>Munafa</span></nav></div>
+  </span></span></button>
+  <p class="line" id="line" aria-live="polite"></p>
+  <div class="dots" id="dots"></div>
+</div>
 <script>
-const S=[{"n":"home","t":"A shop and a bill","p":"Sharma ji runs a kirana in Noida. His wholesaler has just dropped off stock and a bill. He taps \"Pay a wholesaler bill\"."},{"n":"scan","t":"Photograph it","p":"The AI reads every line of the bill: item, quantity, the rate he paid and the printed MRP."},{"n":"bill","t":"Check it","p":"Each line shows what he keeps on that item. The bill's GST e-invoice QR is checked, so the bill is real."},{"n":"paid","t":"Pay by UPI","p":"₹15,541 goes to Shree Balaji Traders. The bill and its 8 items are saved. He did nothing extra."},{"n":"munafa","t":"Munafa","p":"After a month of bills, he sees what each item earns a week: the margin times how fast it sells."},{"n":"insight","t":"Same margin, different money","p":"Coca-Cola and Surf Excel keep about the same margin. Coca-Cola sells 6 times faster, so it earns 4 times more each week."},{"n":"shelves","t":"Cash on the shelves","p":"₹41,170 of his money is sitting in stock. The Horlicks has been there 38 days."},{"n":"voice","t":"A note every night","p":"After closing, a 24-second voice note in Hindi: what he earned, what did best, one thing to change."},{"n":"credit","t":"Stock on credit","p":"Paytm can now see his stock sell in 5 days, so it can pay his next bill today. He repays ₹508 a day from his QR. Example terms only."},{"n":"request","t":"Next: the wholesaler sends the bill","p":"Wholesalers on Tally send bills straight to the shop's Paytm, items attached. The shop just taps pay."}];
-const imgs=[...document.querySelectorAll('.phone img')],dots=document.getElementById('dots');
-S.forEach(()=>dots.appendChild(document.createElement('i')));
+const LINES=["Sharma ji's wholesaler has just dropped off stock and a bill.","He takes a photo. Every line on the bill is read.","Each item shows what he keeps. The bill's GST QR checks out.","He pays by UPI. The bill and its items are saved.","After a month, what each item earns in a week.","Same margin. Coca-Cola sells six times faster.","₹41,170 of his money is sitting on the shelves.","Every night, 24 seconds in Hindi.","Paytm can now see his stock move, so it can pay his next bill.","Later, wholesalers send the bill straight to Paytm."];
+const scr=document.getElementById('scr'),view=document.getElementById('view'),apps=[...view.children],dots=document.getElementById('dots');
+const q=new URLSearchParams(location.search);if(q.has('shot'))document.body.classList.add('shot');
+LINES.forEach(()=>dots.appendChild(document.createElement('i')));
+const fit=()=>{const s=scr.clientWidth/402;view.style.transform='scale('+s+')';view.style.height=scr.clientHeight/s+'px'};
 let k=0;
-function show(i){k=Math.max(0,Math.min(S.length-1,i));
-  imgs.forEach((im,j)=>{im.classList.toggle('on',j===k);im.alt=j===k?S[k].t:''});
-  [...dots.children].forEach((d,j)=>d.classList.toggle('on',j===k));
-  document.getElementById('n').textContent=(k+1)+' of '+S.length;
-  document.getElementById('t').textContent=S[k].t;document.getElementById('p').textContent=S[k].p;
-  document.getElementById('back').disabled=k===0;document.getElementById('next').textContent=k===S.length-1?'Start again':'Next';
-  try{history.replaceState(null,'','#'+(k+1))}catch(e){}}
-const go=d=>show(k===S.length-1&&d>0?0:k+d);
-document.getElementById('next').onclick=()=>go(1);document.getElementById('back').onclick=()=>go(-1);
-document.getElementById('phone').onclick=()=>go(1);
-addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
-show((parseInt(location.hash.slice(1))||1)-1);
-</script></body></html>
+function show(i){k=(i+LINES.length)%LINES.length;apps.forEach((a,j)=>a.classList.toggle('on',j===k));
+  [...dots.children].forEach((d,j)=>d.classList.toggle('on',j===k));document.getElementById('line').textContent=LINES[k];
+  if(!q.has('shot'))try{history.replaceState(null,'','#'+(k+1))}catch(e){}}
+document.getElementById('ph').onclick=()=>show(k+1);
+addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(k+1);if(e.key==='ArrowLeft')show(k-1)});
+addEventListener('resize',fit);fit();
+show((parseInt(q.get('shot')||location.hash.slice(1))||1)-1);
+</script>
+</body></html>

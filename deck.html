@@ -1,28 +1,28 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1280"><title>Munafa deck</title><style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=block');
 @page{size:1280px 720px;margin:0}
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--ink:#111214;--sub:#5f6066;--navy:#002e6e;--sky:#00baf2;--bg:#f3f4f6;--tint:#eaf8fe}
+:root{--ink:#1d1d1f;--sub:#6e6e73;--navy:#012a72;--sky:#00b8f5;--bg:#f5f5f7;--tint:#e6f6fd}
 body{font-family:Inter,Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;background:#888}
 section{position:relative;width:1280px;height:720px;background:var(--bg);padding:44px 56px 60px;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
 @media screen{section{margin:0 auto 24px}}
-.dark{background:var(--navy);color:#fff}
+.dark{background:#fff;color:var(--ink)}
 .split{flex-direction:row;align-items:center;justify-content:space-between;padding:56px 80px}
 .col{max-width:640px}
-.hero{font-size:96px;font-weight:800;letter-spacing:-.03em}
-.lede{font-size:28px;line-height:1.35;margin-top:20px;font-weight:500}
-.meta{font-size:16px;line-height:1.6;color:#b9c4d6;margin-top:56px}
-h2{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:28px}
-h2.w{color:#fff}
-h3{font-size:22px;font-weight:700;line-height:1.3}
+.hero{font-size:88px;font-weight:600;letter-spacing:-.03em}
+.lede{font-size:26px;line-height:1.4;margin-top:20px;font-weight:400;color:#3a3a3c}
+.meta{font-size:16px;line-height:1.6;color:var(--sub);margin-top:56px}
+h2{font-size:34px;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:28px}
+h2.w{color:var(--ink)}
+h3{font-size:22px;font-weight:600;line-height:1.3}
 p{font-size:18px;line-height:1.5}
 .mute{color:var(--sub)}
-.strong{font-weight:700;color:var(--navy)}
+.strong{font-weight:500;color:var(--navy)}
 .blue{color:var(--navy)}
 .src{font-size:12px;color:var(--sub);margin-top:auto}
-.num{font-size:64px;font-weight:800;letter-spacing:-.03em;color:var(--navy);margin:8px 0}
+.num{font-size:64px;font-weight:600;letter-spacing:-.03em;color:var(--navy);margin:8px 0}
 .big{font-size:22px;line-height:1.45;margin-bottom:22px}
-.card{background:#fff;border-radius:20px;padding:24px 26px;display:flex;flex-direction:column;gap:10px}
+.card{background:#fff;border-radius:24px;padding:24px 26px;display:flex;flex-direction:column;gap:10px}
 .card.tint{background:var(--tint)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1}
 .two.lop{grid-template-columns:1fr 1.7fr;flex:none}
@@ -30,36 +30,36 @@ p{font-size:18px;line-height:1.5}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
 ul{padding-left:22px;display:flex;flex-direction:column;gap:14px;font-size:20px;line-height:1.4}
 ol{padding-left:26px;display:flex;flex-direction:column;gap:14px;font-size:21px;line-height:1.35;margin-top:8px}
-.ph{height:560px;width:auto;flex:none;border-radius:31px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-.ph.tall{height:620px}
+.ph{height:540px;width:auto;flex:none}
+.ph.tall{height:640px}
 .pair{display:flex;gap:28px;align-items:flex-start}
 .text{display:flex;flex-direction:column;gap:16px;padding-top:8px;max-width:520px;height:560px}
 .text.wide{max-width:none;flex:1}
 .steps{display:flex;flex-direction:column;gap:36px;padding-top:30px;flex:1}
 .step{display:flex;gap:20px;align-items:flex-start}
-.step b{flex:none;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
+.step b{flex:none;font-weight:500;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
 .step h3{font-size:22px;margin-bottom:6px}
 .four{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;justify-items:center}
-.four .ph{height:500px}
+.four .ph{height:510px}
 figcaption{text-align:center;margin-top:12px;display:flex;flex-direction:column;gap:2px}
-figcaption b{font-size:17px}figcaption span{font-size:13px;color:var(--sub)}
+figcaption b{font-size:17px;font-weight:500}figcaption span{font-size:13px;color:var(--sub)}
 .card.row{flex-direction:row;align-items:flex-start;gap:20px;padding:20px 24px}
 .lab{flex:none;width:170px;color:var(--navy)}
 .stack{gap:14px 20px}.stack .card.row p{font-size:16.5px}
 .stack .lab{width:150px;font-size:17px}
-.k{font-size:15px;color:var(--sub)}.v{font-size:21px;font-weight:700;margin-bottom:10px}
+.k{font-size:15px;color:var(--sub)}.v{font-size:21px;font-weight:500;margin-bottom:10px}
 .table{display:flex;flex-direction:column;gap:14px}
 .th,.tr{display:grid;grid-template-columns:220px 1fr 1fr;gap:28px;align-items:start}
-.th{padding:0 26px;font-size:14px;font-weight:700;color:var(--sub)}
+.th{padding:0 26px;font-size:14px;font-weight:600;color:var(--sub)}
 .tr{flex-direction:row}
 .tallc{min-height:470px}.tr p{font-size:18px}.tr{padding:28px 26px}.th{font-size:16px}.table{gap:18px}
 .fill{flex:1;grid-auto-rows:1fr;margin-bottom:24px}.fill .card{justify-content:center;padding:28px 32px}.fill p{font-size:19px}.three .card p{font-size:18px}.lop .card{min-height:420px}.foot{position:absolute;left:56px;right:56px;bottom:22px;display:flex;justify-content:space-between;font-size:12px;color:var(--sub)}
 </style></head><body><section class="dark split">
     <div class="col">
-      <h1 class="hero">Munafa</h1>
+      <img src="brand/paytm-app.svg" alt="Paytm" style="height:30px;display:block;margin-bottom:36px"><h1 class="hero">Munafa</h1>
       <p class="lede">Pay your wholesaler by photographing the bill. Find out what each item in your shop really earns.</p>
       <p class="meta">Paytm Build for India AI Hackathon, Delhi · Track 1: Merchant Growth AI<br>Akash Wadhwani · sheets.works</p>
-    </div><img class="ph tall" src="shots/sm/home.png" alt=""></section>
+    </div><img class="ph tall" src="shots2/sm/1.png" alt=""></section>
 <section><h2>Problem: Paytm sees money coming in, not what it bought</h2>
     <div class="two">
       <div class="card"><h3>What Paytm sees about a kirana today</h3><div class="num">₹5,400 a day</div>
@@ -70,27 +70,27 @@ figcaption b{font-size:17px}figcaption span{font-size:13px;color:var(--sub)}
         <p class="strong">The owner knows MRP minus rate on one packet. He does not know which items earn him the most each week.</p></div>
     </div><div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>2</span></div></section>
 <section><h2>The wholesaler's bill already holds the item data</h2>
-    <div class="pair"><img class="ph " src="shots/sm/scan.png" alt=""><div class="steps">
+    <div class="pair"><img class="ph " src="shots2/sm/2.png" alt=""><div class="steps">
       <div class="step"><b>1</b><div><h3>Every bill lists item, quantity, the rate paid and the printed MRP.</h3><p class="mute">That is margin per item, already written down.</p></div></div>
       <div class="step"><b>2</b><div><h3>A kirana sells roughly what it buys.</h3><p class="mute">If 48 bottles of Coca-Cola come in every 4 days, about 48 go out every 4 days.</p></div></div>
       <div class="step"><b>3</b><div><h3>Owners won't photograph bills for a report. They will to pay.</h3><p class="mute">So the photo is the payment.</p></div></div>
     </div></div><div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>3</span></div></section>
 <section><h2>Solution: photograph the bill, pay it, see the profit</h2>
-    <div class="four"><figure><img class="ph " src="shots/sm/scan.png" alt=""><figcaption><b>1. Photograph the bill</b><span>AI reads all 8 lines</span></figcaption></figure><figure><img class="ph " src="shots/sm/bill.png" alt=""><figcaption><b>2. Check it</b><span>Margin per item, GST QR checked</span></figcaption></figure><figure><img class="ph " src="shots/sm/paid.png" alt=""><figcaption><b>3. Pay by UPI</b><span>Stock and bill saved</span></figcaption></figure><figure><img class="ph " src="shots/sm/munafa.png" alt=""><figcaption><b>4. Munafa</b><span>What each item earns a week</span></figcaption></figure></div><div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>4</span></div></section>
+    <div class="four"><figure><img class="ph " src="shots2/sm/2.png" alt=""><figcaption><b>1. Photograph the bill</b><span>AI reads all 8 lines</span></figcaption></figure><figure><img class="ph " src="shots2/sm/3.png" alt=""><figcaption><b>2. Check it</b><span>Margin per item, GST QR checked</span></figcaption></figure><figure><img class="ph " src="shots2/sm/4.png" alt=""><figcaption><b>3. Pay by UPI</b><span>Stock and bill saved</span></figcaption></figure><figure><img class="ph " src="shots2/sm/5.png" alt=""><figcaption><b>4. Munafa</b><span>What each item earns a week</span></figcaption></figure></div><div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>4</span></div></section>
 <section><h2>Profit per item is margin times speed</h2>
-    <div class="pair"><img class="ph " src="shots/sm/munafa.png" alt=""><img class="ph " src="shots/sm/insight.png" alt=""><div class="text">
+    <div class="pair"><img class="ph " src="shots2/sm/5.png" alt=""><img class="ph " src="shots2/sm/6.png" alt=""><div class="text">
       <h3>Coca-Cola and Surf Excel earn almost the same margin, 15% and 16%.</h3>
       <p class="mute">Coca-Cola sells a bill of 48 in 4 days. Surf Excel takes 24 days to sell 20. So Coca-Cola earns ₹504 a week and Surf Excel ₹128.</p>
       <div class="card tint"><p class="strong">The app tells him: order 10 Surf Excel next time, not 20, and keep ₹1,180 in hand.</p></div>
       <p class="src">Sample shop and bill, made up for the demo.</p></div></div><div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>5</span></div></section>
 <section><h2>Cash on the shelves, and a note in Hindi every night</h2>
-    <div class="pair"><img class="ph " src="shots/sm/shelves.png" alt=""><img class="ph " src="shots/sm/voice.png" alt=""><div class="text">
+    <div class="pair"><img class="ph " src="shots2/sm/7.png" alt=""><img class="ph " src="shots2/sm/8.png" alt=""><div class="text">
       <div class="num">₹41,170</div>
       <p class="mute">is paid out to wholesalers and still on Sharma ji's shelves. The Horlicks has been there 38 days. Cutting slow stock is the cheapest working capital a shop can find.</p>
       <h3>A 24-second voice note in Hindi after closing</h3>
       <p class="mute">What he earned, which item did best, and one thing to change on the next order. The same voice idea as the Soundbox, now about stock and profit.</p></div></div><div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>6</span></div></section>
 <section><h2>Stock on credit, against stock Paytm can now see</h2>
-    <div class="pair"><img class="ph " src="shots/sm/credit.png" alt=""><div class="text wide">
+    <div class="pair"><img class="ph " src="shots2/sm/9.png" alt=""><div class="text wide">
       <div class="card row"><h3 class="lab">Stock turnover</h3><p>This shop sells its stock in about 5 days. A loan for stock is backed by stock that moves.</p></div><div class="card row"><h3 class="lab">A payment record</h3><p>Fourteen wholesaler bills paid through Paytm, on time.</p></div><div class="card row"><h3 class="lab">Real bills</h3><p>Bills from wholesalers above ₹5 crore turnover carry a GST e-invoice QR signed by the government. Paytm checks it, so a fake bill cannot raise credit.</p></div>
       <p class="src">Example: Paytm pays the wholesaler ₹15,000 today; the shop repays ₹508 a day from its QR for 30 days, 9% of its daily QR. Illustrative terms; a lending partner sets real ones. More than half of Paytm's merchant loan disbursals already go to repeat borrowers (Q4 FY26 release).</p>
     </div></div><div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>7</span></div></section>
@@ -101,7 +101,7 @@ figcaption b{font-size:17px}figcaption span{font-size:13px;color:var(--sub)}
         <div><p class="k">Money in</p><p class="v">₹5,400 a day by QR</p></div><div><p class="k">Money out</p><p class="v">₹2,35,000 a month to 3 wholesalers</p></div><div><p class="k">Item mix</p><p class="v">54 items, with margin and speed for each</p></div><div><p class="k">Profit</p><p class="v">about ₹38,200 a month, 14% on average</p></div><div><p class="k">Stock</p><p class="v">₹41,170 on shelves, sells in 5 days</p></div><div><p class="k">Suppliers</p><p class="v">who they are, how often, how much</p></div></div></div>
     </div><p class="src">The shop shares this with Paytm by consent, under the DPDP Act. Brand-level data leaves only in anonymised totals.</p><div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>8</span></div></section>
 <section><h2>Next: wholesalers send the bill themselves</h2>
-    <div class="pair"><img class="ph " src="shots/sm/request.png" alt=""><div class="text wide">
+    <div class="pair"><img class="ph " src="shots2/sm/10.png" alt=""><div class="text wide">
       <p class="big">Most wholesalers bill from Tally, Marg or BUSY. A small connector on their side sends each bill straight to the shop's Paytm, items attached. The shop taps pay. No photo.</p>
       <div class="three"><div class="card"><h3 class="blue">For the wholesaler</h3><p>Paid the same day instead of chasing cash. Becomes a Paytm merchant.</p></div><div class="card"><h3 class="blue">For Paytm</h3><p>One wholesaler brings every shop on his route. Clean item data, no reading errors.</p></div><div class="card"><h3 class="blue">Works today</h3><p>Tally exposes its data to other software. BUSY and Marg have no public API yet, so the photo covers them.</p></div></div></div></div><div class="foot"><span>Munafa · Track 1, Merchant Growth AI</span><span>9</span></div></section>
 <section><h2>Tech stack</h2><div class="grid2 stack">
@@ -116,4 +116,4 @@ figcaption b{font-size:17px}figcaption span{font-size:13px;color:var(--sub)}
 <section class="dark split">
     <div class="col"><h2 class="w">What we will build on 31 October</h2>
       <ol><li>Photograph a real wholesaler bill from a Noida kirana, live</li><li>Read every line, check the totals, show margin per item</li><li>Pay it by UPI in test mode</li><li>Munafa after a month of bills, with the Hindi voice note</li><li>The stock-credit offer, and Paytm's view of the shop</li></ol>
-      <p class="meta">Akash Wadhwani · sheets.works<br>Clickable demo: akashwadhwani35.github.io/munafa</p></div><img class="ph tall" src="shots/sm/insight.png" alt=""></section></body></html>
+      <p class="meta">Akash Wadhwani · sheets.works<br>Clickable demo: akashwadhwani35.github.io/munafa</p></div><img class="ph tall" src="shots2/sm/3.png" alt=""></section></body></html>

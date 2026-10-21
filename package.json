@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Munafa: pay your wholesaler by photographing the bill. Paytm Build for India AI Hackathon, Track 1.",
   "scripts": {
-    "build": "node screens.mjs && node deck.mjs && node demo.mjs"
+    "build": "node bill.mjs && node app.mjs && node shots.mjs && node deck.mjs"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,7 @@
   "dependencies": {
     "pptxgenjs": "^4.0.1",
     "puppeteer": "^25.15.0",
+    "qrcode": "^1.5.4",
     "sharp": "^0.35.5"
   },
   "private": true

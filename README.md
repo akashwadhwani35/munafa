@@ -25,17 +25,18 @@ Next step: wholesalers send bills straight from Tally to the shop's Paytm, so th
 
 | File | What it is |
 |---|---|
-| `index.html` | The clickable prototype (10 screens) |
+| `index.html` | The clickable prototype: 10 screens, live HTML inside an iPhone 17 Pro frame |
 | `Munafa-deck.pdf`, `deck.html` | The pitch deck |
 | `data.mjs` | The sample shop and bill. Every number on the screens and slides comes from here |
-| `screens.mjs` | Builds each app screen as HTML and screenshots it into `shots/` |
-| `deck.mjs`, `demo.mjs` | Build the deck and the prototype |
+| `bill.mjs` | Draws the stand-in bill photo in `bills/` |
+| `app.mjs` | Builds `index.html` |
+| `shots.mjs`, `deck.mjs` | Photograph each screen in its frame, then build the deck from them |
 
 ```
 npm install
-node screens.mjs && node deck.mjs && node demo.mjs
+npm run build
 ```
 
-The shop, the wholesaler and the bill are made up for the demo. The working version, which reads a real bill, is built on 31 October 2026 at the hackathon in Noida.
+The shop, the wholesaler and the bill are made up for the demo, and the bill photo is a stand-in until we photograph real ones. The working version, which reads a real bill, is built on 31 October 2026 at the hackathon in Noida.
 
 Akash Wadhwani · [sheets.works](https://sheets.works)
